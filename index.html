@@ -341,6 +341,48 @@
     }, 1000);
 </script>
 
-<script src="https://forms.yandex.ru/_static/embed.js"></script><iframe src="https://forms.yandex.ru/u/68a07165505690108efd94ae?iframe=1" frameborder="0" name="ya-form-68a07165505690108efd94ae" width="650"></iframe>
+<!-- Красивый контейнер для Яндекс Формы -->
+<div class="form-container">
+    <h2>Подтвердите ваше присутствие</h2>
+    <p>Пожалуйста, заполните форму ниже до <b>01.09.2025</b></p>
+
+    <div class="iframe-wrapper">
+        <iframe src="https://forms.yandex.ru/u/68a07165505690108efd94ae?iframe=1" 
+                frameborder="0" 
+                name="ya-form-68a07165505690108efd94ae" 
+                width="100%" 
+                height="500"
+                style="border:0;">
+        </iframe>
+    </div>
+</div>
+
+<style>
+.form-container {
+    background: #fff0f3;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 30px auto;
+    max-width: 700px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.form-container h2 {
+    color: #b5838d;
+    margin-bottom: 10px;
+}
+
+.form-container p {
+    color: #4a4a4a;
+    margin-bottom: 20px;
+}
+
+.iframe-wrapper {
+    overflow: hidden;
+    border-radius: 12px;
+    background: #fff;
+}
+</style>
 </body>
 </html>
