@@ -1,251 +1,334 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Приглашение на свадьбу</title>
-<style>
-    /* Основные стили */
+  <meta charset="UTF-8">
+  <title>Приглашение на свадьбу</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
     body {
-        font-family: 'Arial', sans-serif;
-        background-color: #fef6f0;
-        color: #4a4a4a;
-        margin: 0;
-        padding: 0;
+      font-family: "Georgia", serif;
+      background: #fffafa;
+      margin: 0;
+      padding: 0;
+      color: #333;
     }
     .container {
-        max-width: 900px;
-        margin: 0 auto;
-        padding: 20px;
-        text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      text-align: center;
     }
-    h1, h2, h3 {
-        color: #b5838d;
+    h1, h2 {
+      color: #b5838d;
     }
-    p {
-        line-height: 1.6;
+    /* Календарь */
+    table.calendar {
+      border-collapse: collapse;
+      margin: 20px auto;
+      width: 100%;
+      max-width: 400px;
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
-
-    /* Календарь таблицей */
-    .calendar-table table {
-        width: 100%;
-        border-collapse: collapse;
-        text-align: center;
-        font-family: Arial, sans-serif;
-        margin: 20px 0;
+    table.calendar th, table.calendar td {
+      border: 1px solid #e5e5e5;
+      width: 14.2%;
+      height: 60px;
+      text-align: center;
+      vertical-align: middle;
+      position: relative;
     }
-    .calendar-table th {
-        background-color: #f9d6d6;
-        padding: 10px;
-        font-size: 20px;
-        color: #b5838d;
+    table.calendar th {
+      background: #f8d7da;
+      font-size: 18px;
     }
-    .calendar-table td {
-        border: 1px solid #e8cfcf;
-        padding: 15px;
-        font-size: 16px;
-        position: relative;
+    .special-date {
+      background-color: #ffd6d6;
+      font-weight: bold;
+      font-size: 18px;
+      position: relative;
     }
-    .calendar-table .special-date {
-        background-color: #ffd6d6;
-        font-weight: bold;
-        font-size: 18px;
-        position: relative;
+    .special-date span {
+      position: relative;
+      z-index: 2;
     }
-    .calendar-table .special-date .heart {
-        position: absolute;
-        top: -20px;
-        left: 50%;
-        transform: translateX(-50%);
-        animation: pulse 1.5s infinite;
-        font-size: 18px;
+    .special-date .heart {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 30px;
+      height: 30px;
+      transform: translate(-50%, -50%);
+      animation: pulse 1.5s infinite;
+      z-index: 1;
+      opacity: 0.8;
     }
     @keyframes pulse {
-        0% { transform: translateX(-50%) scale(1); }
-        50% { transform: translateX(-50%) scale(1.3); }
-        100% { transform: translateX(-50%) scale(1); }
+      0%   { transform: translate(-50%, -50%) scale(1); }
+      50%  { transform: translate(-50%, -50%) scale(1.3); }
+      100% { transform: translate(-50%, -50%) scale(1); }
     }
-
-    /* Время и место */
+    /* Фото */
+    .event-photo {
+      margin: 20px auto;
+    }
+    .event-photo img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    /* Инфо */
     .event-info {
-        margin: 30px 0;
-    }
-    .event-info img {
-        width: 100%;
-        max-width: 600px;
-        border-radius: 10px;
-        margin: 20px 0;
+      margin: 20px 0;
+      font-size: 18px;
     }
     .btn-map {
-        display: inline-block;
-        padding: 12px 25px;
-        margin-top: 10px;
-        background-color: #b5838d;
-        color: #fff;
-        border-radius: 30px;
-        text-decoration: none;
-        transition: background-color 0.3s;
+      display: inline-block;
+      margin-top: 15px;
+      padding: 12px 20px;
+      background: #b5838d;
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: 0.3s;
     }
     .btn-map:hover {
-        background-color: #a05a6c;
+      background: #8c4a5a;
     }
-
     /* Дресс-код */
     .dress-code {
-        background-color: #fff0f3;
-        padding: 20px;
-        margin: 20px 0;
-        border-radius: 10px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #fff0f3;
+      border-radius: 12px;
+      max-width: 600px;
     }
-
-    /* Форма RSVP */
+    /* RSVP */
     .rsvp {
-        background-color: #fdf1f4;
-        padding: 20px;
-        border-radius: 10px;
-        margin: 30px 0;
+      margin: 30px auto;
+      padding: 20px;
+      background: #fff0f3;
+      border-radius: 12px;
+      max-width: 500px;
+    }
+    .rsvp form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .rsvp input, .rsvp select, .rsvp button {
+      padding: 12px;
+      border: 1px solid #e0a7a7;
+      border-radius: 8px;
+      font-size: 16px;
     }
     .rsvp button {
-        padding: 12px 25px;
-        margin: 10px;
-        border: none;
-        border-radius: 30px;
-        cursor: pointer;
-        font-size: 16px;
-        transition: 0.3s;
+      background: #b5838d;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
     }
-    .rsvp .yes {
-        background-color: #b5838d;
-        color: #fff;
+    .rsvp button:hover {
+      background: #8c4a5a;
     }
-    .rsvp .yes:hover {
-        background-color: #a05a6c;
+    /* Таймер */
+    .countdown {
+      margin: 40px auto;
+      padding: 20px;
+      background: #fff0f3;
+      border-radius: 12px;
+      max-width: 500px;
+      text-align: center;
     }
-    .rsvp .no {
-        background-color: #f2c6c6;
-        color: #4a4a4a;
+    .time {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 10px;
     }
-    .rsvp .no:hover {
-        background-color: #e0a7a7;
+    .time div {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
-
-    /* Адаптивность */
-    @media (max-width: 600px) {
-        .calendar-table td, .calendar-table th {
-            padding: 10px;
-            font-size: 14px;
-        }
-        .calendar-table .special-date .heart {
-            font-size: 16px;
-            top: -15px;
-        }
-        .event-info img {
-            width: 100%;
-        }
-        .btn-map, .rsvp button {
-            width: 80%;
-        }
+    .time span {
+      font-size: 14px;
+      margin-top: 5px;
+      color: #555;
     }
-</style>
+    /* Добавить в календарь */
+    .calendar-add {
+      margin: 40px auto;
+      padding: 20px;
+      text-align: center;
+      background: #fff0f3;
+      border-radius: 12px;
+      max-width: 500px;
+    }
+    .calendar-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+    .calendar-btn {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .calendar-btn.google {
+      background: #4285F4;
+      color: #fff;
+    }
+    .calendar-btn.google:hover {
+      background: #3367D6;
+    }
+    .calendar-btn.ics {
+      background: #b5838d;
+      color: #fff;
+    }
+    .calendar-btn.ics:hover {
+      background: #8c4a5a;
+    }
+  </style>
 </head>
 <body>
-<div class="container">
-    <h1>Дорогие друзья!</h1>
-    <p>С огромной радостью приглашаем вас отпраздновать вместе с нами день нашей свадьбы. Будет весело, тепло и уютно!</p>
+  <div class="container">
+    <h1>Дорогие гости!</h1>
+    <p>С радостью приглашаем вас на нашу свадьбу 💍</p>
 
     <!-- Календарь -->
-    <div class="calendar-table">
-        <table>
-            <thead>
-                <tr>
-                    <th colspan="7">Октябрь</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td></td>
-                    <td></td>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td>4</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>7</td>
-                    <td>8</td>
-                    <td>9</td>
-                    <td>10</td>
-                    <td>11</td>
-                    <td>12</td>
-                </tr>
-                <tr>
-                    <td>13</td>
-                    <td>14</td>
-                    <td>15</td>
-                    <td>16</td>
-                    <td>17</td>
-                    <td>18</td>
-                    <td>19</td>
-                </tr>
-                <tr>
-                    <td>20</td>
-                    <td>21</td>
-                    <td>22</td>
-                    <td>23</td>
-                    <td>24</td>
-                    <td class="special-date">
-                        <div class="heart">❤️</div>
-                        25
-                    </td>
-                    <td>26</td>
-                </tr>
-                <tr>
-                    <td>27</td>
-                    <td>28</td>
-                    <td>29</td>
-                    <td>30</td>
-                    <td>31</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            </tbody>
-        </table>
+    <table class="calendar">
+      <tr><th colspan="7">Октябрь 2025</th></tr>
+      <tr>
+        <td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td>
+      </tr>
+      <tr>
+        <td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td>
+      </tr>
+      <tr>
+        <td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td>
+      </tr>
+      <tr>
+        <td>20</td><td>21</td><td>22</td><td>23</td><td>24</td>
+        <td class="special-date">
+          <img src="heart.png" alt="Heart" class="heart">
+          <span>25</span>
+        </td>
+        <td>26</td>
+      </tr>
+      <tr>
+        <td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td></td><td></td>
+      </tr>
+    </table>
+
+    <!-- Фото -->
+    <div class="event-photo">
+      <img src="lariva.png" alt="Фото">
     </div>
 
+    <!-- Инфо -->
     <div class="event-info">
-        <h2>Время и место</h2>
-        <p>Начало: 15:00 | Конец: 23:00</p>
-        <h3>La Riva Hall</h3>
-        <img src="https://via.placeholder.com/600x300.png?text=La+Riva+Hall" alt="La Riva Hall">
-        <p>Автозаводская ул., 23, стр. 16, Москва, 115280</p>
-        <a href="https://yandex.ru/maps/?whatshere[point]=37.674&whatshere[zoom]=17" class="btn-map" target="_blank">Посмотреть на карте</a>
+      <p><b>Начало:</b> 15:00 | <b>Окончание:</b> 23:00</p>
+      <p><b>Место:</b> La Riva Hall</p>
+      <p>Автозаводская ул., 23, стр. 16, Москва, 115280</p>
+      <a href="https://yandex.ru/maps/?rtext=~55.687284,37.660871&rtt=auto" target="_blank" class="btn-map">Открыть маршрут</a>
     </div>
 
+    <!-- Дресс-код -->
     <div class="dress-code">
-        <h2>Дресс-код</h2>
-        <p>Дресс-кода нет, но просим воздержаться от броских принтов. Будем рады, если вы предпочтете спокойные и нейтральные тона.</p>
+      <h2>Дресс-код</h2>
+      <p>Мы рады сообщить, что дресс-кода на нашей свадьбе не будет. Тем не менее, мы просим воздержаться от броских принтов. Будем очень рады, если вы отдадите предпочтение спокойным и нейтральным тонам.</p>
     </div>
 
+    <!-- RSVP -->
     <div class="rsvp">
-        <h2>Подтвердите ваше присутствие</h2>
-        <p>Пожалуйста, дайте ответ до 01.09.2025</p>
-        <button class="yes" onclick="confirmRSVP(true)">Приду</button>
-        <button class="no" onclick="confirmRSVP(false)">Не приду</button>
-        <div id="rsvp-message" style="margin-top:20px; font-weight:bold;"></div>
+      <h2>Подтвердите ваше присутствие</h2>
+      <p>Пожалуйста, заполните форму до 01.09.2025</p>
+      <form id="rsvp-form">
+        <input type="text" name="entry.1111111111" placeholder="Имя" required>
+        <input type="text" name="entry.2222222222" placeholder="Фамилия" required>
+        <input type="number" name="entry.3333333333" placeholder="Количество гостей" min="1" required>
+        <select name="entry.4444444444" required>
+          <option value="">Выберите...</option>
+          <option value="Приду">Приду</option>
+          <option value="Не приду">Не приду</option>
+        </select>
+        <button type="submit">Отправить</button>
+      </form>
+      <div id="rsvp-message" style="margin-top:15px; font-weight:bold;"></div>
     </div>
-</div>
 
-<script>
-    function confirmRSVP(attending) {
-        const message = document.getElementById('rsvp-message');
-        if(attending) {
-            message.textContent = 'Спасибо! Мы будем рады видеть вас на свадьбе!';
-        } else {
-            message.textContent = 'Жаль, что вы не сможете присутствовать.';
-        }
-    }
-</script>
+    <!-- Таймер -->
+    <div class="countdown">
+      <h2>До торжества осталось:</h2>
+      <div class="time">
+        <div><div id="days">0</div><span>дней</span></div>
+        <div><div id="hours">0</div><span>часов</span></div>
+        <div><div id="minutes">0</div><span>минут</span></div>
+        <div><div id="seconds">0</div><span>секунд</span></div>
+      </div>
+    </div>
+
+    <!-- Добавить в календарь -->
+    <div class="calendar-add">
+      <h2>Добавьте событие в календарь</h2>
+      <div class="calendar-buttons">
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Свадьба&dates=20251025T120000Z/20251025T200000Z&details=Приглашаем вас на нашу свадьбу!&location=La Riva Hall, Автозаводская ул., 23, стр. 16, Москва"
+           target="_blank" class="calendar-btn google">
+           Google Календарь
+        </a>
+        <a href="invite.ics" download class="calendar-btn ics">
+          Скачать .ics
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Таймер
+    const targetDate = new Date("2025-10-25T15:00:00").getTime();
+    setInterval(function () {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("days").innerText = days;
+      document.getElementById("hours").innerText = hours;
+      document.getElementById("minutes").innerText = minutes;
+      document.getElementById("seconds").innerText = seconds;
+    }, 1000);
+
+    // RSVP форма (Яндекс)
+    document.getElementById("rsvp-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      fetch("https://forms.yandex.ru/u/ВАШ_ID/formResponse", {
+          method: "POST",
+          body: formData,
+          mode: "no-cors"
+      }).then(() => {
+          document.getElementById("rsvp-message").textContent =
+              "Спасибо! Мы получили вашу информацию ❤";
+          this.reset();
+      }).catch(() => {
+          document.getElementById("rsvp-message").textContent =
+              "Ошибка при отправке. Попробуйте позже.";
+      });
+    });
+  </script>
 </body>
 </html>
