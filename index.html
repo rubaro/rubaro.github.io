@@ -205,6 +205,61 @@
         background: #8c4a5a;
     }
 
+    .timing-section {
+        font-family: 'Times New Roman', Georgia, serif;
+        padding: 5vh 20px;
+        background-color: #faf7f4;
+        color: #333;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+    }
+    
+    .timing-container {
+        max-width: 600px;
+        width: 100%;
+    }
+    
+    .timing-title {
+        font-size: clamp(2rem, 5vw, 3rem);
+        margin-bottom: 1.5em;
+        font-weight: normal;
+    }
+    
+    .timing-block {
+        margin-bottom: 2.5em;
+    }
+    
+    .timing-time {
+        font-size: clamp(1.5rem, 4vw, 2rem);
+        margin: 0 0 0.5em 0;
+        font-weight: bold;
+    }
+    
+    .timing-event {
+        font-size: clamp(1.1rem, 3vw, 1.25rem);
+        margin: 0 0 0.25em 0;
+        font-style: italic;
+    }
+    
+    .timing-description {
+        font-size: clamp(1rem, 2.5vw, 1.1rem);
+        margin: 1em 0 0 0;
+        color: #666;
+        line-height: 1.5;
+    }
+    
+    .timing-image {
+        width: 100%;
+        height: auto;
+        max-width: 600px;
+        display: block;
+        margin: 2em auto 0;
+        border-radius: 8px;
+    }
     @media (max-width: 600px) {
         .calendar-table td, .calendar-table th {
             padding: 10px;
@@ -262,6 +317,30 @@
             </tbody>
         </table>
     </div>
+
+    <section class="timing-section">
+    <div class="timing-container">
+        
+        <h1 class="timing-title">Тайминг</h1>
+        
+        <div class="timing-block">
+            <p class="timing-time">15:00-16:00</p>
+            <p class="timing-event">Сбор гостей</p>
+            <p class="timing-event">Фуршет</p>
+            <p class="timing-description">Время пролетит незаметно за игристым и общением с другими гостями</p>
+        </div>
+        
+        <div class="timing-block">
+            <p class="timing-time">16:00-23:00</p>
+            <p class="timing-event">Свадебный банкет</p>
+            <p class="timing-description">Будет много танцев, веселья, поздравлений, и, конечно, любви</p>
+        </div>
+        
+        <!-- ЗДЕСЬ ЗАМЕНИТЕ SRC НА ПУТЬ К ВАШЕЙ КАРТИНКЕ -->
+        <img class="timing-image" src="путь/к/вашей/картинке.jpg" alt="Свадебное изображение" width="2048" height="2048">
+        
+    </div>
+    </section>
 
     <!-- Время и место -->
     <div class="event-info">
