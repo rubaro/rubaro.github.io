@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Приглашение на свадьбу</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet">
+<style>
+    :root {
+        --primary-color: #b5838d;
+        --secondary-color: #ffd6d6;
+        --background-color: #fef6f0;
+        --text-color: #4a4a4a;
+        --card-color: #fff0f3;
+        --accent-color: #a05a6c;
+    }
+    
+    body {
+        font-family: 'Cormorant Infant', serif;
+        background-color: var(--background-color);
+        color: var(--text-color);
+        margin: 0;
+        padding: 0;
+        line-height: 1.6;
+        font-weight: 400;
+    }
+    
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+    
+    h1, h2, h3 {
+        color: var(--primary-color);
+        text-align: center;
+        font-weight: 500;
+    }
+    
+    .names {
+        font-family: 'Parisienne', cursive;
+        font-size: 46px;
+        text-align: center;
+        margin: 10px 0 30px 0;
+        color: var(--primary-color);
+    }
+    
+    .card {
+        background-color: var(--card-color);
+        border-radius: 16px;
+        padding: 25px;
+        margin: 30px 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    
+    .text-center {
+        text-align: center;
+    }
+
+    .header-image {
+        width: 100%;
+        max-height: 300px;
+        object-fit: cover;
+        border-radius: 16px;
+        margin-bottom: 20px;
+    }
+
+    /* Календарь */
+    .calendar-table {
+        margin: 20px 0;
+    }
+    
+    .calendar-table table {
+        width: 100%;
+        border-collapse: collapse;
+        text-align: center;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+    
+    .calendar-table th {
+        background-color: var(--secondary-color);
+        padding: 12px;
+        font-size: 20px;
+        color: var(--primary-color);
+    }
+    
+    .calendar-table td {
+        border: 1px solid #e8cfcf;
+        padding: 12px;
+        position: relative;
+        height: 50px;
+    }
+    
+    .calendar-table .special-date {
+        background-color: var(--secondary-color);
+        font-weight: bold;
+        position: relative;
+    }
+    
+    .calendar-table .special-date img.heart {
+        position: absolute;
+        top: -25%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 70px;
+        height: 70px;
+        animation: pulse 1.5s infinite;
+    }
+    
+    @keyframes pulse {
+        0% { transform: translateX(-50%) scale(1); }
+        50% { transform: translateX(-50%) scale(1.3); }
+        100% { transform: translateX(-50%) scale(1); }
+    }
+
+    /* Время и место */
+    .event-info {
+        text-align: center;
+    }
+    
+    .event-info img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 16px;
+        margin: 20px 0;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .btn {
+        display: inline-block;
+        padding: 12px 25px;
+        margin-top: 10px;
+        background-color: var(--primary-color);
+        color: #fff;
+        border-radius: 30px;
+        text-decoration: none;
+        transition: background-color 0.3s;
+        font-family: 'Cormorant Infant', serif;
+        font-size: 18px;
+    }
+    
+    .btn:hover {
+        background-color: var(--accent-color);
+    }
+
+    /* Программа мероприятия */
+    .program-container {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        margin: 40px 0;
+    }
+    
+    .program-item {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+    }
+    
+    .program-image {
+        flex-shrink: 0;
+        width: 80px;
+        height: 80px;
+        border-radius: 12px;
+        object-fit: cover;
+        border: 3px solid var(--secondary-color);
+        background-color: var(--card-color);
+    }
+    
+    .program-content {
+        flex: 1;
+        padding: 15px;
+        background: var(--card-color);
+        border-radius: 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 80px;
+    }
+    
+    .program-time {
+        font-weight: bold;
+        font-size: 18px;
+        color: var(--primary-color);
+        margin: 0 0 5px 0;
+    }
+    
+    .program-event {
+        font-weight: bold;
+        margin: 0 0 8px 0;
+    }
+    
+    .program-description {
+        margin: 0;
+        color: #666;
+        font-size: 0.95em;
+    }
+
+    /* Форма */
+    .form-container {
+        background: var(--card-color);
+        border-radius: 16px;
+        padding: 25px;
+        margin: 30px 0;
+    }
+    
+    .iframe-wrapper {
+        overflow: hidden;
+        border-radius: 12px;
+        background: #fff;
+    }
+
+    /* Обратный отсчёт */
+    .time-boxes {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+    
+    .time-box {
+        background: var(--secondary-color);
+        padding: 15px;
+        border-radius: 10px;
+        min-width: 70px;
+    }
+    
+    .time-box span {
+        display: block;
+        font-size: 24px;
+        font-weight: bold;
+        animation: heartbeat 1s infinite;
+    }
+    
+    .time-box label {
+        font-size: 14px;
+        display: block;
+        margin-top: 5px;
+    }
+    
+    @keyframes heartbeat {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.2); }
+    }
+
+    /* Кнопки календаря */
+    .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+    
+    .calendar-btn {
+        display: inline-block;
+        padding: 12px 20px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: 0.3s;
+        background: #f2e6e9;
+        color: var(--text-color);
+        font-family: 'Cormorant Infant', serif;
+    }
+    
+    .calendar-btn:hover {
+        background: #e0d0d5;
+    }
+    
+    .calendar-btn.apple {
+        background: var(--primary-color);
+        color: #fff;
+    }
+    
+    .calendar-btn.apple:hover {
+        background: var(--accent-color);
+    }
+
+    @media (max-width: 600px) {
+        .calendar-table td, .calendar-table th {
+            padding: 8px;
+            font-size: 14px;
+        }
+        
+        .program-container {
+            gap: 25px;
+        }
+        
+        .program-image {
+            width: 70px;
+            height: 70px;
+        }
+        
+        .program-content {
+            padding: 12px;
+            min-height: 70px;
+        }
+        
+        .program-time {
+            font-size: 16px;
+        }
+        
+        .time-box {
+            min-width: 50px;
+            padding: 10px;
+        }
+        
+        .time-box span {
+            font-size: 18px;
+        }
+        
+        .button-group {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .calendar-btn {
+            width: 100%;
+            text-align: center;
+        }
+        
+        .event-info img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .names {
+            font-size: 36px;
+        }
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <img src="flowers.png" alt="Цветочное оформление" class="header-image">
+    
+    <div class="card text-center">
+        <h1>Приглашаем вас на нашу свадьбу</h1>
+        <div class="names">Яна & Олег</div>
+        <p>С огромной радостью приглашаем вас отпраздновать вместе с нами день нашей свадьбы. Будет весело, тепло и уютно!</p>
+    </div>
+
+    <!-- Календарь -->
+    <div class="card">
+        <div class="calendar-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="7">Октябрь</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td><td></td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td>
+                    </tr>
+                    <tr>
+                        <td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td>
+                    </tr>
+                    <tr>
+                        <td>13</td><td>14</td><td>15</td><td>16</td><td>17</td><td>18</td><td>19</td>
+                    </tr>
+                    <tr>
+                        <td>20</td><td>21</td><td>22</td><td>23</td><td>24</td>
+                        <td class="special-date">
+                            <img src="heart.png" alt="heart" class="heart">25
+                        </td>
+                        <td>26</td>
+                    </tr>
+                    <tr>
+                        <td>27</td><td>28</td><td>29</td><td>30</td><td>31</td><td></td><td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Программа мероприятия -->
+    <div class="card">
+        <h2>Программа</h2>
+        <div class="program-container">
+            <div class="program-item">
+                <img src="couple.png" alt="Сбор гостей" class="program-image">
+                <div class="program-content">
+                    <p class="program-time">15:00 - 16:00</p>
+                    <p class="program-event">Сбор гостей / Фуршет</p>
+                    <p class="program-description">Время пролетит незаметно за игристым и общением с другими гостями</p>
+                </div>
+            </div>
+            
+            <div class="program-item">
+                <img src="glass.png" alt="Банкет" class="program-image">
+                <div class="program-content">
+                    <p class="program-time">16:00 - 23:00</p>
+                    <p class="program-event">Свадебный банкет</p>
+                    <p class="program-description">Будет много танцев, веселья, поздравлений, и, конечно, любви</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Время и место -->
+    <div class="card">
+        <div class="event-info">
+            <img src="lariva.png" alt="La Riva Hall">
+            <h2>La Riva Hall</h2>
+            <p>Автозаводская ул., 23, стр. 16, Москва, 115280</p>
+            <a href="https://yandex.ru/maps/?rtext=~55.687284,37.660871&rtt=auto" class="btn" target="_blank">Посмотреть на карте</a>
+        </div>
+    </div>
+
+    <!-- Дресс-код -->
+    <div class="card">
+        <h2 class="text-center">Дресс-код</h2>
+        <p class="text-center">Дресс-кода нет, но просим воздержаться от броских принтов. Будем рады, если вы предпочтете спокойные и нейтральные тона.</p>
+    </div>
+
+    <!-- Форма подтверждения -->
+    <div class="form-container">
+        <h2 class="text-center">Подтвердите ваше присутствие</h2>
+        <p class="text-center">Пожалуйста, заполните форму ниже до <b>01.09.2025</b></p>
+
+        <div class="iframe-wrapper">
+            <iframe src="https://forms.yandex.ru/u/68a07165505690108efd94ae?iframe=1" 
+                frameborder="0" 
+                name="ya-form-68a07165505690108efd94ae" 
+                width="100%" 
+                height="500"
+                style="border:0;">
+            </iframe>
+        </div>
+    </div>
+
+    <!-- Обратный отсчет -->
+    <div class="card text-center">
+        <h2>До торжества осталось:</h2>
+        <div class="time-boxes">
+            <div class="time-box"><span id="days">0</span><label>дней</label></div>
+            <div class="time-box"><span id="hours">0</span><label>часов</label></div>
+            <div class="time-box"><span id="minutes">0</span><label>минут</label></div>
+            <div class="time-box"><span id="seconds">0</span><label>секунд</label></div>
+        </div>
+    </div>
+
+    <!-- Добавить в календарь -->
+    <div class="card text-center">
+        <h2>Добавьте событие в календарь</h2>
+        <div class="button-group">
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Свадьба&dates=20251025T120000Z/20251025T200000Z&details=Приглашаем вас на нашу свадьбу!&location=La Riva Hall, Автозаводская ул., 23, стр. 16, Москва" target="_blank" class="calendar-btn google">Google Календарь</a>
+            <a href="invite.ics" download class="calendar-btn apple">Apple Календарь</a>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Обратный отсчет
+    const weddingDate = new Date("2025-10-25T15:00:00").getTime();
+    const countdownInterval = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+
+        if (distance < 0) {
+            clearInterval(countdownInterval);
+            document.querySelector(".countdown").innerHTML = "<h2>Свадьба уже состоялась!</h2>";
+            return;
+        }
+
+        document.getElementById("days").textContent = Math.floor(distance / (1000 * 60 * 60 * 24));
+        document.getElementById("hours").textContent = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        document.getElementById("minutes").textContent = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        document.getElementById("seconds").textContent = Math.floor((distance % (1000 * 60)) / 1000);
+    }, 1000);
+</script>
+</body>
+</html>
