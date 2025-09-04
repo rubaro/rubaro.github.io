@@ -39,34 +39,43 @@
         font-weight: 700;
     }
 
-    /* Приглашение с цветами */
     .invitation-block {
         position: relative;
         text-align: center;
-        margin: 0;
+        margin: 30px 0;
+        border-radius: 16px;
+        background-color: var(--card-color);
         overflow: hidden;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
     }
-    .flowers-img {
-        width: 110%; /* чуть больше, чтобы убрать отступы */
-        max-width: none;
+
+    .flowers-top,
+    .flowers-bottom {
+        width: 100%;
         height: auto;
         display: block;
-        margin-left: -5%; /* выравниваем центрированием */
     }
+
     .names-block {
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-50%, -55%); /* чуть выше центра */
+        transform: translate(-50%, -50%);
         text-align: center;
         color: var(--primary-color);
         padding: 0 10px;
+        width: 100%;
     }
+
+    /* Текст */
     .names-block h1 {
         font-size: clamp(20px, 5vw, 36px);
         margin-bottom: 8px;
         white-space: nowrap;
     }
+
     .names {
         font-family: 'Parisienne', cursive;
         font-size: clamp(32px, 9vw, 64px);
@@ -248,13 +257,14 @@
     .time-box span {
         font-size: 24px;
         display: block;
+        
     }
 
     /* Адаптив */
-    @media (max-width: 600px) {
+    @media (max-width: 500px) {
         .names-block {
-            top: 45%;
-            transform: translate(-50%, -55%);
+            top: 55%;
+            transform: translate(-50%, -50%);
         }
         .program-row {
             flex-direction: column;
@@ -267,13 +277,13 @@
 <div class="container">
     <!-- Цветы + приглашение -->
     <div class="invitation-block">
-        <img src="flowersup.png" alt="Цветы сверху" class="flowers-img">
+        <img src="./img/flowersup.png" alt="Цветы сверху" class="flowers-top">
         <div class="names-block">
             <h1>Приглашаем вас</h1>
             <h1>на нашу свадьбу</h1>
             <div class="names">Яна & Олег</div>
         </div>
-        <img src="flowersdown.png" alt="Цветы снизу" class="flowers-img">
+        <img src="./img/flowersdown.png" alt="Цветы снизу" class="flowers-bottom">
     </div>
 
     <div class="card text-center">
@@ -302,7 +312,7 @@
                     <tr>
                         <td>20</td><td>21</td><td>22</td><td>23</td><td>24</td>
                         <td class="special-date">
-                            <img src="heart.png" alt="heart" class="heart">25
+                            <img src="./img/heart.png" alt="heart" class="heart">25
                         </td>
                         <td>26</td>
                     </tr>
@@ -319,7 +329,7 @@
         <h2>Программа</h2>
         <div class="program-container">
             <div class="program-item">
-                <img src="couple.png" alt="Сбор гостей" class="program-image">
+                <img src="./img/couple.png" alt="Сбор гостей" class="program-image">
                 <div class="program-content">
                     <div class="program-row">
                         <p class="program-time">15:00 - 16:00</p>
@@ -330,7 +340,7 @@
             </div>
             
             <div class="program-item">
-                <img src="glass.png" alt="Банкет" class="program-image">
+                <img src="./img/glass.png" alt="Банкет" class="program-image">
                 <div class="program-content">
                     <div class="program-row">
                         <p class="program-time">16:00 - 23:00</p>
@@ -345,7 +355,7 @@
     <!-- Время и место -->
     <div class="card">
         <div class="event-info">
-            <img src="lariva.png" alt="La Riva Hall">
+            <img src="./img/lariva.png" alt="La Riva Hall">
             <h2>La Riva Hall</h2>
             <p>Автозаводская ул., 23, стр. 16, Москва, 115280</p>
             <a href="https://yandex.ru/maps/?rtext=~55.687284,37.660871&rtt=auto" class="btn" target="_blank">Посмотреть на карте</a>
@@ -361,14 +371,14 @@
     <!-- Форма подтверждения -->
     <div class="form-container">
         <h2 class="text-center">Подтвердите ваше присутствие</h2>
-        <p class="text-center">Пожалуйста, заполните форму ниже до <b>01.09.2025</b></p>
+        <p class="text-center">Пожалуйста, заполните форму ниже до <b>10.09.2025</b></p>
 
         <div class="iframe-wrapper">
             <iframe src="https://forms.yandex.ru/u/68b434f6068ff022919c2000?iframe=1" 
                 frameborder="0" 
                 name="ya-form-68b434f6068ff022919c2000" 
                 width="100%" 
-                height="500"
+                height="350"
                 style="border:0;">
             </iframe>
         </div>
@@ -390,7 +400,7 @@
         <h2>Добавьте событие в календарь</h2>
         <div class="button-group">
             <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Свадьба&dates=20251025T120000Z/20251025T200000Z&details=Приглашаем вас на нашу свадьбу!&location=La Riva Hall, Автозаводская ул., 23, стр. 16, Москва" target="_blank" class="calendar-btn google">Google Календарь</a>
-            <a href="invite.ics" download class="calendar-btn apple">Apple Календарь</a>
+            <a href="./ics/invite.ics" download class="calendar-btn apple">Apple Календарь</a>
         </div>
     </div>
 </div>
